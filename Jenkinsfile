@@ -10,7 +10,6 @@ pipeline {
   tools {nodejs "node"}
     
   stages {
-        
     stage('Cloning Git') {
       steps {
         git 'https://github.com/mazuma5/node-todo-frontend'
@@ -27,6 +26,13 @@ pipeline {
       steps {
          sh 'npm test'
       }
-    }      
+    }
+    stage('Building Image'){
+      steps{
+        script{
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
   }
 }
