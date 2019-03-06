@@ -1,18 +1,23 @@
 
 pipeline {
+  enviroment{
+    registry = "mazuma5/pipeline-project"
+    registryCredential = 'Dockerhub'
+    dockerImage = ''
+    containerId = sh(script: 'docker ps -aqf "name=node-app"', returnStdout:true)
+  }
   agent any
-    
   tools {nodejs "node"}
     
   stages {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/gustavoapolinario/node-todo-frontend'
+        git 'https://github.com/mazuma5/node-todo-frontend'
       }
     }
         
-    stage('Install dependencies') {
+    stage('Build') {
       steps {
         sh 'npm install'
       }
