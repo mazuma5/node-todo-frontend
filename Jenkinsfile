@@ -1,4 +1,3 @@
-//author: Avik
 pipeline {
   environment{
     registry = "mazuma5/pipeline-project"
@@ -44,6 +43,7 @@ pipeline {
         }
       }
     }
+    
     stage('Cleanup'){
       when{
         not {environment ignoreCase:true, name:'containerId', value:''}
@@ -55,7 +55,7 @@ pipeline {
     }
     stage('Run Container'){
       steps{
-        sh 'docker run --name=node-app -d -p 3000:3000 $registry:$BUILD_NUMBER'
+        sh 'docker run --name=node-app -d -p 3000:3000 $registry:$BUILD_NUMBER &'
       }
     }
   }
