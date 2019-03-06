@@ -1,6 +1,6 @@
 //author: Avik
 pipeline {
-  enviroment{
+  environment{
     registry = "mazuma5/pipeline-project"
     registryCredential = 'Dockerhub'
     dockerImage = ''
