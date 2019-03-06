@@ -44,5 +44,12 @@ pipeline {
         }
       }
     }
+    /*
+    stage('Cleanup'){
+      when{
+        not {environment ignorecase:true, name:'containerId', value:''}
+      }
+    }
+    */
   }
 }
