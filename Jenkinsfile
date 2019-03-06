@@ -46,7 +46,7 @@ pipeline {
     }
     stage('Cleanup'){
       when{
-        not {environment ignorecase:true, name:'containerId', value:''}
+        not {environment ignoreCase:true, name:'containerId', value:''}
       }
       steps {
         sh 'docker stop ${containerId}'
